@@ -1,6 +1,9 @@
 postgres:
     docker run --name postgres12 -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=mysecretpassword -d postgres:12-alpine
 
+mysql:
+    docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=secret -d mysql:8
+
 createdb:
     docker exec -it postgres12 createdb --username=root --owner=root simple_bank
 
@@ -18,7 +21,12 @@ sqlc:
 
 sqlcquery:
     docker exec -it postgres12 psql -U root -d simple_bank
+
+mysqlquery:
     docker exec -it mysql8 msql -U root -p secret -d simple_bank
+
+server:
+    go run main.go
 
 test:
     go test -v -cover ./...
