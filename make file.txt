@@ -28,5 +28,8 @@ mysqlquery:
 server:
     go run main.go
 
+mockgen:
+    mockgen -build_flags=--mod=mod -package mockdb -destination db/mock/store.go github.com/jonathangloria/simplebank/db/sqlc Store
+
 test:
     go test -v -cover ./...
