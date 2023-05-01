@@ -50,6 +50,6 @@ jobs:
       run: aws eks update-kubeconfig --name simple-bank --region ap-southeast-2
     - name: Deploy image to Amazon EKS
       run: |
-      kubectl apply -f eks/aws-auth.yaml
-      kubectl apply -f eks/deployment.yaml
-      kubectl apply -f eks/service.yaml
+        kubectl apply -f eks/aws-auth.yaml
+        kubectl apply -f eks/deployment.yaml
+        kubectl apply -f eks/service.yaml
