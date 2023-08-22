@@ -22,7 +22,7 @@ func TestUpdateUserAPI(t *testing.T) {
 
 	newName := util.RandomOwner()
 	newEmail := util.RandomEmail()
-	invalidEmail := "invalid-email" 
+	invalidEmail := "invalid-email"
 
 	testCases := []struct {
 		name          string
@@ -178,7 +178,8 @@ func TestUpdateUserAPI(t *testing.T) {
 			tc.buildStubs(store)
 			server := newTestServer(t, store, nil)
 
-			res, err := server.UpdateUser(context.Background(), tc.req)
+			ctx := tc.buildContext(t, server.tokenMaker)
+			res, err := server.UpdateUser(ctx, tc.req)
 			tc.checkResponse(t, res, err)
 		})
 	}
